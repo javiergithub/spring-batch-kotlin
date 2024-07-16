@@ -10,15 +10,19 @@ import org.springframework.stereotype.Component
 @Component
 class DataGetter(@Autowired val mysqlDataRepository: MysqlDataRepository,
     @Autowired  val mysql2DataRepository: Mysql2DataRepository) {
-    fun getDataFromMysql2DB(): Mysql2Data {
+    fun getDataFromMysql2DB(): Mysql2Data? {
         var mysql2Data: Mysql2Data? = null
-        mysql2Data = mysql2DataRepository.findFirstByName(name = "Mysql2")
-        return mysql2Data!!
+        mysql2DataRepository.findFirstByName(name = "Mysql2").let { org -> // Type of 'org': Organization
+            mysql2Data = org
+        }
+        return mysql2Data
     }
 
-    fun getDataFromMysqlDB(): MysqlData {
+    fun getDataFromMysqlDB(): MysqlData? {
         var mysqlData: MysqlData? = null
-        mysqlData = mysqlDataRepository.findFirstByName(name = "Mysql")
-        return mysqlData!!
+        mysqlDataRepository.findFirstByName(name = "Mysql").let { org -> // Type of 'org': Organization
+            mysqlData = org
+        }
+        return mysqlData
     }
 }

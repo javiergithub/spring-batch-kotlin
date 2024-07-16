@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MysqlDataRepository: CrudRepository<MysqlData, Long> {
-    fun findFirstByName(name: String): MysqlData
+    fun findFirstByName(name: String): MysqlData?
 }
